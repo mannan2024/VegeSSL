@@ -1,0 +1,87 @@
+[build-system]
+requires = ["setuptools>=45", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "vegessl"
+version = "1.0.0"
+description = "Semi-Supervised Contrastive Learning for Vegetation Mislabel Detection"
+readme = "README.md"
+license = {text = "MIT"}
+requires-python = ">=3.8"
+authors = [
+    {name = "VegeSSL Authors"}
+]
+keywords = [
+    "remote sensing",
+    "contrastive learning",
+    "mislabel detection",
+    "vegetation classification",
+    "deep learning",
+    "pytorch"
+]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Science/Research",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+    "Topic :: Scientific/Engineering :: Image Recognition",
+]
+dependencies = [
+    "torch>=2.0.0",
+    "torchvision>=0.15.0",
+    "numpy>=1.24.0",
+    "pandas>=2.0.0",
+    "scipy>=1.10.0",
+    "scikit-learn>=1.2.0",
+    "opencv-python>=4.7.0",
+    "Pillow>=9.5.0",
+    "tqdm>=4.65.0",
+    "matplotlib>=3.7.0",
+    "PyYAML>=6.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.0.0",
+    "black>=23.0.0",
+    "isort>=5.12.0",
+    "flake8>=6.0.0",
+]
+faiss = [
+    "faiss-cpu>=1.7.4",
+]
+faiss-gpu = [
+    "faiss-gpu>=1.7.4",
+]
+
+[project.urls]
+Homepage = "https://github.com/username/VegeSSL"
+Documentation = "https://github.com/username/VegeSSL#readme"
+Repository = "https://github.com/username/VegeSSL.git"
+Issues = "https://github.com/username/VegeSSL/issues"
+
+[project.scripts]
+vegessl = "main:main"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["vegessl*", "configs*"]
+
+[tool.black]
+line-length = 100
+target-version = ['py38', 'py39', 'py310', 'py311']
+include = '\.pyi?$'
+
+[tool.isort]
+profile = "black"
+line_length = 100
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py"]
