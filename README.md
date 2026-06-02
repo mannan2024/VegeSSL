@@ -93,11 +93,35 @@ data:
 ```bash
 # Run complete pipeline
 python main.py --stage all
+run individually. the structure and details of each folder
+VegeSSL/
+├── main.py                 # Entry point
+├── requirements.txt        # Dependencies
+├── LICENSE                 # MIT License
+├── README.md              # This file
+│
+├── configs/               # Configuration
+│   ├── __init__.py
+│   ├── config.py          # Config loader
+│   └── default.yaml       # Default settings
+│
+├── vegessl/               # Core library
+│   ├── __init__.py
+│   ├── models.py          # Neural network architectures
+│   ├── losses.py          # Loss functions
+│   ├── datasets.py        # Data loading
+│   └── utils.py           # Utility functions
+│
+├── experiments/           # Training scripts
+│   ├── __init__.py
+│   ├── train_stage1.py    # Stage 1 training
+│   └── train_stage2.py    # Stage 2 training
+│
+├── evaluation/            # Evaluation scripts
+│   ├── __init__.py
+│   ├── detect_errors.py   # Mislabel detection
+│   └── visualize.py       # Visualization
 
-# Or run individual stages
-python main.py --stage train      # Stage 1 & 2: Training
-python main.py --stage detect     # Stage 3: Detection
-python main.py --stage visualize  # Generate plots
 ```
 
 ### 4. Review Results
@@ -114,24 +138,6 @@ output/
 │   ├── suspicious_high.csv
 │   └── suspicious_very_high.csv
 └── figures/           # Visualization plots
-```
-
-## Usage
-
-### Command Line Interface
-
-```bash
-# Run with default configuration
-python main.py --stage all
-
-# Use custom configuration
-python main.py --stage all --config my_config.yaml
-
-# Run specific stages
-python main.py --stage 1          # Stage 1 only
-python main.py --stage 2          # Stage 2 only
-python main.py --stage detect     # Stage 3 only
-python main.py --stage visualize  # Visualizations only
 ```
 
 ### Python API
@@ -179,42 +185,7 @@ Four threshold levels are provided for mislabel detection:
 | 3 | High | 0.7 | Fewer false positives |
 | 4 | Very High | 0.85 | Only strong anomalies |
 
-## Project Structure
 
-```
-VegeSSL/
-├── main.py                 # Entry point
-├── requirements.txt        # Dependencies
-├── LICENSE                 # MIT License
-├── README.md              # This file
-│
-├── configs/               # Configuration
-│   ├── __init__.py
-│   ├── config.py          # Config loader
-│   └── default.yaml       # Default settings
-│
-├── vegessl/               # Core library
-│   ├── __init__.py
-│   ├── models.py          # Neural network architectures
-│   ├── losses.py          # Loss functions
-│   ├── datasets.py        # Data loading
-│   └── utils.py           # Utility functions
-│
-├── experiments/           # Training scripts
-│   ├── __init__.py
-│   ├── train_stage1.py    # Stage 1 training
-│   └── train_stage2.py    # Stage 2 training
-│
-├── evaluation/            # Evaluation scripts
-│   ├── __init__.py
-│   ├── detect_errors.py   # Mislabel detection
-│   └── visualize.py       # Visualization
-│
-└── docs/                  # Documentation
-    └── methodology.md
-```
-
-## Citation
 
 If you use VegeSSL in your research, please cite:
 
