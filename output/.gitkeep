@@ -1,0 +1,9 @@
+# Output directory placeholder
+# This directory will contain:
+#
+# output/
+# ├── checkpoints/     # Model weights (.pt files)
+# ├── tables/          # CSV analysis results
+# ├── figures/         # Visualization plots
+# ├── embeddings/      # Cached embeddings
+# └── detected_errors/ # Error visualizations
