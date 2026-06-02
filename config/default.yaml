@@ -1,0 +1,135 @@
+# VegeSSL Configuration
+# =====================
+# Default configuration for the mislabel detection pipeline
+
+# Data paths (update these for your environment)
+data:
+  train_image_path: "data/train/image"
+  train_label_path: "data/train/label"
+  test_image_path: "data/test/image"
+  test_label_path: "data/test/label"
+
+# Class configuration
+classes:
+  num_classes: 10
+  names:
+    - "Invalid"
+    - "Other"
+    - "Water"
+    - "Abandoned land"
+    - "Bare land"
+    - "Farmland"
+    - "Herbaceous"
+    - "Broadleaf forest"
+    - "Shrubland"
+    - "Orchard"
+  
+  # RGB colors for each class (used for label encoding)
+  colors:
+    - [0, 0, 0]          # Invalid
+    - [255, 255, 255]    # Other
+    - [151, 219, 242]    # Water
+    - [38, 115, 0]       # Abandoned land
+    - [255, 234, 190]    # Bare land
+    - [245, 245, 122]    # Farmland
+    - [233, 255, 190]    # Herbaceous
+    - [114, 137, 68]     # Broadleaf forest
+    - [115, 178, 115]    # Shrubland
+    - [240, 176, 207]    # Orchard
+  
+  # Vegetation classes (indices of classes to analyze for mislabels)
+  vegetation_indices: [3, 5, 6, 7, 8, 9]
+
+# Training hyperparameters
+training:
+  batch_size: 4
+  crop_size: 512
+  embedding_dim: 128
+  temperature: 0.05
+  learning_rate: 5.0e-5
+  weight_decay: 1.0e-4
+  
+  # Stage 1 training
+  stage1:
+    epochs: 100
+    patience: 20
+  
+  # Stage 2 training (hard negative refinement)
+  stage2:
+    epochs: 100
+    patience: 20
+    lambda_hard_neg: 1.0
+    num_sample_pixels: 300000
+    knn_neighbors: 30
+    percentile_low: 40
+    percentile_high: 70
+
+  # Data split
+  validation_split: 0.2
+  random_seed: 42
+
+# Detection configuration
+detection:
+  knn_neighbors: 50
+  min_segment_size: 10
+  
+  # Threshold levels for mislabel detection
+  thresholds:
+    level1:
+      name: "low"
+      value: 0.3
+      description: "Low confidence - many detections"
+    level2:
+      name: "medium"
+      value: 0.5
+      description: "Medium confidence - balanced"
+    level3:
+      name: "high"
+      value: 0.7
+      description: "High confidence - fewer false positives"
+    level4:
+      name: "very_high"
+      value: 0.85
+      description: "Very high confidence - only strong anomalies"
+  
+  # Size bins for segment categorization
+  size_bins:
+    small:
+      min: 0
+      max: 100
+      label: "Small (<100 px)"
+    medium:
+      min: 100
+      max: 5000
+      label: "Medium (100-5000 px)"
+    large:
+      min: 5000
+      max: .inf
+      label: "Large (>5000 px)"
+
+# Output configuration
+output:
+  base_dir: "output"
+  figures_dir: "output/figures"
+  tables_dir: "output/tables"
+  embeddings_dir: "output/embeddings"
+  checkpoints_dir: "output/checkpoints"
+  errors_dir: "output/detected_errors"
+
+# Visualization settings
+visualization:
+  # Colors for error highlighting (RGB)
+  error_colors:
+    3: [220, 20, 60]     # Crimson - Abandoned land
+    5: [255, 140, 0]     # Orange - Farmland
+    6: [138, 43, 226]    # Violet - Herbaceous
+    7: [0, 191, 255]     # Cyan - Broadleaf forest
+    8: [50, 205, 50]     # Lime - Shrubland
+    9: [255, 20, 147]    # Pink - Orchard
+  
+  error_fill_opacity: 0.4
+  dpi: 300
+  
+  # Plot style
+  font_family: "serif"
+  font_size: 12
