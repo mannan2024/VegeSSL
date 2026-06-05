@@ -92,35 +92,24 @@ data:
 
 ```bash
 # Run complete pipeline
+
 python main.py --stage all
-run individually. the structure and details of each folder
-VegeSSL/
-├── main.py                 # Entry point
-├── requirements.txt        # Dependencies
-├── LICENSE                 # MIT License
-├── README.md              # This file
-│
-├── configs/               # Configuration
-│   ├── __init__.py
-│   ├── config.py          # Config loader
-│   └── default.yaml       # Default settings
-│
-├── vegessl/               # Core library
-│   ├── __init__.py
-│   ├── models.py          # Neural network architectures
-│   ├── losses.py          # Loss functions
-│   ├── datasets.py        # Data loading
-│   └── utils.py           # Utility functions
-│
-├── experiments/           # Training scripts
-│   ├── __init__.py
-│   ├── train_stage1.py    # Stage 1 training
-│   └── train_stage2.py    # Stage 2 training
-│
-├── evaluation/            # Evaluation scripts
-│   ├── __init__.py
-│   ├── detect_errors.py   # Mislabel detection
-│   └── visualize.py       # Visualization
+
+
+
+# To run each stage individually
+
+For stage 1: experiments/train_stage1.py
+
+For stage 2: experiments/train_stage2.py
+
+For stage 3: evaluation/detect_errors.py
+
+
+
+# To generate isolation based plotes
+
+ run: evaluation/visualize.py
 
 ```
 
