@@ -176,9 +176,18 @@ Four threshold levels are provided for mislabel detection:
 
 
 
-If you use VegeSSL in your research, please cite:
+## Citation
+
+If you find VegeSSL useful in your research or applications, please cite:
 
 ```bibtex
+@article{vegessl2026,
+  title={VegeSSL: A Multistage Contrastive Learning Framework Combining Self-Supervised Representation and Label-Guided Refinement for Segment-Level Noisy Label Detection in Remote Sensing Data},
+  journal={The Photogrammetric Record},
+  year={2026}
+  doi={https://onlinelibrary.wiley.com/doi/10.1111/phor.70069}
+}
+```
 
 ```
 
