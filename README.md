@@ -42,7 +42,7 @@ The pipeline consists of three stages:
 
 ```bash
 # Clone the repository
-git clone https://github.com/username/VegeSSL.git
+git clone https://github.com/mannan2024/VegeSSL.git
 cd VegeSSL
 
 # Create virtual environment
